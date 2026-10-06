@@ -1,0 +1,43 @@
+<Window x:Class="LockX.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:LockX.Views"
+        Title="Settings" Width="500" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <TabControl Margin="16">
+        <TabItem Header="Security">
+            <StackPanel Margin="16,18,16,12">
+                <TextBlock Text="Auto-lock after idle" Margin="0,0,0,6" />
+                <ComboBox x:Name="AutoLock" Width="200" HorizontalAlignment="Left" SelectionChanged="OnAutoLockChanged"
+                          DisplayMemberPath="Key" SelectedValuePath="Value" />
+
+                <CheckBox x:Name="LockOnHide" Content="Lock when the app loses focus or is minimised" Margin="0,18,0,0"
+                          Click="OnLockOnHideChanged" />
+
+                <CheckBox x:Name="Hello" Margin="0,12,0,0" Visibility="Collapsed" Click="OnHelloClicked">
+                    <TextBlock Text="Unlock with Windows Hello" />
+                </CheckBox>
+
+                <TextBlock x:Name="Error" Style="{StaticResource Danger}" Margin="0,12,0,0" Visibility="Collapsed" />
+
+                <TextBlock Style="{StaticResource Secondary}" FontSize="12" Margin="0,22,0,0" TextWrapping="Wrap">
+                    <Run Text="Your vault lives at " /><Run x:Name="PathText" />
+                </TextBlock>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Password">
+            <StackPanel Margin="16,18,16,12">
+                <TextBlock Text="Change vault password" FontWeight="SemiBold" Margin="0,0,0,12" />
+                <PasswordBox x:Name="Current" Margin="0,0,0,8" PasswordChanged="OnPwChanged" />
+                <PasswordBox x:Name="New" Margin="0,0,0,8" PasswordChanged="OnPwChanged" />
+                <PasswordBox x:Name="Confirm" PasswordChanged="OnPwChanged" />
+                <v:PasswordStrengthBar x:Name="Strength" Margin="0,10,0,0" />
+                <TextBlock Style="{StaticResource Secondary}" FontSize="12" TextWrapping="Wrap" Margin="0,12,0,0"
+                           Text="Only the wrapped key is rewritten. Your files are not re-encrypted, so this is instant." />
+                <TextBlock x:Name="Message" Margin="0,10,0,0" TextWrapping="Wrap" Visibility="Collapsed" />
+                <Button x:Name="ChangeButton" Content="Change password" Style="{StaticResource AccentButtonStyle}"
+                        HorizontalAlignment="Right" Margin="0,12,0,0" IsEnabled="False" Click="OnChangePassword" />
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>

@@ -1,0 +1,7 @@
+<Window x:Class="LockX.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lock X" Width="1120" Height="700" MinWidth="900" MinHeight="560"
+        WindowStartupLocation="CenterScreen" AllowDrop="True">
+    <ContentControl x:Name="Host" IsTabStop="False" />
+</Window>
